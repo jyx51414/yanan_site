@@ -1,306 +1,749 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>延安大生产运动 · 数字学习交互平台</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:"Microsoft YaHei","PingFang SC",sans-serif}
-body{background:#f8f9fa;color:#222;line-height:1.7}
-
-/* 🔥 顶部轮播图（自动循环播放） */
-.slider{
-    width:100%;
-    height:420px;
-    position:relative;
-    overflow:hidden;
+:root{
+    --red:#a82020;
+    --dark-red:#7f1717;
+    --light-bg:#f6f7fb;
+    --text:#222;
+    --subtext:#666;
+    --white:#fff;
+    --shadow:0 10px 30px rgba(0,0,0,0.08);
+    --shadow-hover:0 18px 40px rgba(0,0,0,0.12);
+    --radius:20px;
 }
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Microsoft YaHei","PingFang SC",sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:
+        radial-gradient(circle at top left, rgba(168,32,32,0.04), transparent 28%),
+        radial-gradient(circle at top right, rgba(168,32,32,0.05), transparent 26%),
+        var(--light-bg);
+    color:var(--text);
+    line-height:1.8;
+    overflow-x:hidden;
+}
+
+/* 顶部轮播 */
+.hero{
+    position:relative;
+    width:100%;
+    height:520px;
+    overflow:hidden;
+    background:#111;
+}
+
+.slider{
+    position:absolute;
+    inset:0;
+}
+
 .slider img{
+    position:absolute;
+    inset:0;
     width:100%;
     height:100%;
     object-fit:cover;
-    position:absolute;
     opacity:0;
-    animation:slide 15s infinite;
+    transform:scale(1.08);
+    animation:heroFade 18s infinite;
+    filter:brightness(0.72);
 }
-@keyframes slide{
-    0%{opacity:0}
-    20%{opacity:1}
-    40%{opacity:1}
-    60%{opacity:0}
-}
-.slider img:nth-child(1){animation-delay:0s}
-.slider img:nth-child(2){animation-delay:5s}
-.slider img:nth-child(3){animation-delay:10s}
 
-/* 顶部标题 */
-.header{
-    background:linear-gradient(135deg,#a82020,#8b1a1a);
-    color:white;
-    padding:30px 20px;
-    text-align:center;
-    box-shadow:0 4px 12px rgba(0,0,0,0.15);
-}
-.header h1{font-size:28px}
-.header p{font-size:16px;opacity:.9}
+.slider img:nth-child(1){animation-delay:0s;}
+.slider img:nth-child(2){animation-delay:6s;}
+.slider img:nth-child(3){animation-delay:12s;}
 
-/* 导航 */
-.nav{
-    background:#7c1616;
+@keyframes heroFade{
+    0%{opacity:0;transform:scale(1.08);}
+    8%{opacity:1;}
+    28%{opacity:1;transform:scale(1);}
+    36%{opacity:0;}
+    100%{opacity:0;}
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.5)),
+        linear-gradient(135deg, rgba(168,32,32,0.2), rgba(0,0,0,0.08));
+    z-index:1;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    height:100%;
     display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:#fff;
+    padding:20px;
+}
+
+.hero-inner{
+    max-width:900px;
+    animation:floatUp 1.2s ease;
+}
+
+.hero-badge{
+    display:inline-block;
+    padding:8px 16px;
+    border:1px solid rgba(255,255,255,0.35);
+    border-radius:999px;
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(10px);
+    font-size:14px;
+    margin-bottom:18px;
+    letter-spacing:1px;
+}
+
+.hero h1{
+    font-size:46px;
+    line-height:1.25;
+    margin-bottom:16px;
+    text-shadow:0 6px 18px rgba(0,0,0,0.28);
+}
+
+.hero p{
+    font-size:18px;
+    opacity:0.95;
+    max-width:760px;
+    margin:0 auto 28px;
+    text-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+.hero-buttons{
+    display:flex;
+    gap:14px;
     justify-content:center;
     flex-wrap:wrap;
-    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.hero-buttons a{
+    text-decoration:none;
+    padding:13px 24px;
+    border-radius:999px;
+    font-weight:600;
+    transition:all .35s ease;
+}
+
+.btn-main{
+    background:linear-gradient(135deg, #c62d2d, #921d1d);
+    color:#fff;
+    box-shadow:0 10px 20px rgba(168,32,32,0.3);
+}
+
+.btn-main:hover{
+    transform:translateY(-3px);
+    box-shadow:0 16px 28px rgba(168,32,32,0.35);
+}
+
+.btn-sub{
+    color:#fff;
+    border:1px solid rgba(255,255,255,0.35);
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(8px);
+}
+
+.btn-sub:hover{
+    transform:translateY(-3px);
+    background:rgba(255,255,255,0.14);
+}
+
+@keyframes floatUp{
+    from{opacity:0;transform:translateY(30px);}
+    to{opacity:1;transform:translateY(0);}
+}
+
+/* 顶部导航 */
+.nav-wrap{
     position:sticky;
     top:0;
     z-index:999;
-}
-.nav a{
-    color:white;
-    padding:16px 22px;
-    text-decoration:none;
-    transition:all 0.3s;
-    font-weight:500;
-}
-.nav a:hover{
-    background:#ffffff22;
-    transform:translateY(-2px)
+    backdrop-filter:blur(14px);
+    background:rgba(124,22,22,0.88);
+    box-shadow:0 6px 20px rgba(0,0,0,0.12);
 }
 
-.container{max-width:1000px;margin:35px auto;padding:0 20px}
+.nav{
+    max-width:1200px;
+    margin:0 auto;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    padding:8px 10px;
+}
+
+.nav a{
+    color:#fff;
+    text-decoration:none;
+    padding:14px 18px;
+    border-radius:12px;
+    font-weight:500;
+    transition:all .3s ease;
+}
+
+.nav a:hover{
+    background:rgba(255,255,255,0.12);
+    transform:translateY(-2px);
+}
+
+/* 页面容器 */
+.container{
+    max-width:1100px;
+    margin:40px auto;
+    padding:0 20px;
+}
+
+/* 通用 section 动画 */
+.reveal{
+    opacity:0;
+    transform:translateY(40px);
+    transition:all .8s ease;
+}
+.reveal.show{
+    opacity:1;
+    transform:translateY(0);
+}
 
 /* 卡片 */
 .card{
-    background:white;
-    border-radius:16px;
-    box-shadow:0 6px 20px rgba(0,0,0,0.06);
-    padding:32px;
-    margin-bottom:28px;
-    transition:0.3s;
-    border:1px solid #eee;
+    background:rgba(255,255,255,0.88);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.65);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:34px;
+    margin-bottom:30px;
+    transition:all .35s ease;
 }
-.card:hover{box-shadow:0 10px 30px rgba(0,0,0,0.09)}
+
+.card:hover{
+    transform:translateY(-4px);
+    box-shadow:var(--shadow-hover);
+}
+
 .card h2{
-    color:#a82020;
-    font-size:23px;
+    color:var(--red);
+    font-size:25px;
     margin-bottom:22px;
-    border-left:6px solid #a82020;
+    border-left:6px solid var(--red);
     padding-left:14px;
 }
 
-/* 聊天气泡 */
-.chat-box{
-    height:320px;
-    background:#f7f8fa;
-    border:1px solid #eee;
+.card-title-sub{
+    color:var(--subtext);
+    margin-top:-8px;
+    margin-bottom:20px;
+}
+
+/* 图片 */
+.content-image{
+    width:100%;
+    border-radius:16px;
+    display:block;
+    margin:18px 0 22px;
+    box-shadow:0 10px 24px rgba(0,0,0,0.12);
+    transition:transform .4s ease, box-shadow .4s ease;
+}
+
+.content-image:hover{
+    transform:scale(1.015);
+    box-shadow:0 16px 30px rgba(0,0,0,0.16);
+}
+
+/* 知识区排版 */
+.section-title{
+    font-size:17px;
+    color:var(--red);
+    font-weight:bold;
+    margin:16px 0 8px;
+}
+
+.highlight-box{
+    margin-top:18px;
+    background:linear-gradient(135deg, rgba(168,32,32,0.06), rgba(168,32,32,0.02));
+    border:1px solid rgba(168,32,32,0.12);
+    border-radius:16px;
+    padding:18px 20px;
+}
+
+.timeline{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:14px;
+    margin:16px 0 10px;
+}
+
+.timeline-item{
+    background:#fff;
     border-radius:14px;
+    padding:16px;
+    border:1px solid #eee;
+    box-shadow:0 6px 14px rgba(0,0,0,0.04);
+    transition:all .3s ease;
+}
+
+.timeline-item:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 20px rgba(0,0,0,0.08);
+}
+
+.timeline-item strong{
+    color:var(--red);
+    display:block;
+    margin-bottom:4px;
+}
+
+/* 聊天 */
+.chat-box{
+    height:340px;
+    background:linear-gradient(180deg, #fafbfc, #f3f5f8);
+    border:1px solid #ececec;
+    border-radius:18px;
     padding:20px;
     overflow-y:auto;
-    margin-bottom:12px;
+    margin-bottom:14px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,0.7);
 }
-.bubble-user{
-    background:#fff;
-    padding:10px 14px;
-    border-radius:18px 18px 4px 18px;
-    margin:8px 0 8px auto;
-    display:table;
-    max-width:75%;
-    box-shadow:0 2px 6px rgba(0,0,0,0.05);
-}
-.bubble-ai{
-    background:#a82020;
-    color:#fff;
-    padding:10px 14px;
-    border-radius:18px 18px 18px 4px;
-    margin:8px auto 8px 0;
-    display:table;
-    max-width:75%;
-    box-shadow:0 2px 6px rgba(168,32,32,0.2);
-}
-.chat-welcome{color:#666}
 
-.chat-input{display:flex;gap:10px}
-.chat-input input{flex:1;padding:12px;border:1px solid #ddd;border-radius:10px}
-.chat-input button{background:#a82020;color:white;border:none;padding:12px 20px;border-radius:10px}
-.chat-input button:hover{background:#8b1a1a}
+.chat-welcome{
+    color:#666;
+    background:#fff;
+    border-radius:16px;
+    padding:16px;
+    border:1px solid #eee;
+}
+
+.bubble-user,
+.bubble-ai{
+    max-width:76%;
+    padding:12px 15px;
+    margin:10px 0;
+    animation:bubbleIn .35s ease;
+    word-break:break-word;
+}
+
+.bubble-user{
+    margin-left:auto;
+    background:#fff;
+    border-radius:18px 18px 6px 18px;
+    box-shadow:0 5px 14px rgba(0,0,0,0.06);
+}
+
+.bubble-ai{
+    margin-right:auto;
+    background:linear-gradient(135deg, #b12626, #8a1a1a);
+    color:#fff;
+    border-radius:18px 18px 18px 6px;
+    box-shadow:0 8px 16px rgba(168,32,32,0.2);
+}
+
+@keyframes bubbleIn{
+    from{opacity:0;transform:translateY(10px) scale(0.98);}
+    to{opacity:1;transform:translateY(0) scale(1);}
+}
+
+.chat-input{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.chat-input input{
+    flex:1;
+    min-width:220px;
+    padding:14px 16px;
+    border:1px solid #ddd;
+    border-radius:14px;
+    outline:none;
+    background:#fff;
+    transition:.3s;
+    font-size:15px;
+}
+
+.chat-input input:focus{
+    border-color:var(--red);
+    box-shadow:0 0 0 4px rgba(168,32,32,0.08);
+}
+
+.chat-input button{
+    background:linear-gradient(135deg, #b12626, #8a1a1a);
+    color:#fff;
+    border:none;
+    padding:14px 24px;
+    border-radius:14px;
+    cursor:pointer;
+    transition:all .3s ease;
+    font-weight:600;
+}
+
+.chat-input button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 18px rgba(168,32,32,0.22);
+}
 
 /* 辩论赛 */
-.debate-content{border-left:4px solid #a82020;padding-left:18px;margin:14px 0}
+.debate-content{
+    border-left:4px solid var(--red);
+    padding-left:18px;
+    margin:16px 0 6px;
+}
+
+.debate-item{
+    background:#fff;
+    border-radius:14px;
+    padding:14px 16px;
+    margin:12px 0;
+    border:1px solid #eee;
+    box-shadow:0 6px 12px rgba(0,0,0,0.04);
+}
+
 .zheng{color:#c93737;font-weight:bold}
 .fan{color:#2F6BBA;font-weight:bold}
 
-/* 视频 */
-video{width:100%;border-radius:12px;margin-top:20px;box-shadow:0 4px 12px rgba(0,0,0,0.1)}
+/* 视频按钮 */
+.video-link{
+    display:inline-block;
+    margin-top:16px;
+    background:linear-gradient(135deg, #b12626, #8a1a1a);
+    color:#fff;
+    padding:13px 22px;
+    border-radius:14px;
+    text-decoration:none;
+    font-weight:600;
+    transition:all .3s ease;
+    box-shadow:0 10px 20px rgba(168,32,32,0.18);
+}
 
+.video-link:hover{
+    transform:translateY(-3px);
+    box-shadow:0 14px 24px rgba(168,32,32,0.25);
+}
+
+/* 团队 */
+.team-box{
+    background:linear-gradient(135deg, rgba(168,32,32,0.05), rgba(168,32,32,0.02));
+    border:1px solid rgba(168,32,32,0.1);
+    border-radius:16px;
+    padding:20px;
+}
+
+/* 页脚 */
 .footer{
-    background:#f2f2f2;
+    margin-top:48px;
+    background:linear-gradient(135deg, #871919, #681111);
+    color:#f6eaea;
     text-align:center;
-    padding:35px 20px;
-    color:#666;
-    margin-top:40px;
+    padding:34px 20px;
+    position:relative;
+    overflow:hidden;
+}
+
+.footer::before{
+    content:"";
+    position:absolute;
+    width:240px;
+    height:240px;
+    background:rgba(255,255,255,0.05);
+    border-radius:50%;
+    top:-80px;
+    right:-60px;
+}
+
+.footer p{
+    position:relative;
+    z-index:1;
+}
+
+/* 响应式 */
+@media (max-width:900px){
+    .hero{
+        height:440px;
+    }
+    .hero h1{
+        font-size:34px;
+    }
+    .hero p{
+        font-size:16px;
+    }
+}
+
+@media (max-width:768px){
+    .hero{
+        height:390px;
+    }
+    .hero h1{
+        font-size:28px;
+    }
+    .hero-badge{
+        font-size:12px;
+    }
+    .card{
+        padding:24px 20px;
+    }
+    .nav a{
+        padding:12px 12px;
+        font-size:14px;
+    }
+    .timeline{
+        grid-template-columns:1fr;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🔥 顶部 3 张图自动轮播（联网稳定图） -->
-<div class="slider">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/1964-12_1964%E5%B9%B4_%E5%BB%B6%E5%AE%89.jpg" alt="延安历史">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Nanniwan.jpg" alt="南泥湾">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/210%E5%9B%BD%E9%81%93_-_panoramio_%281%29.jpg" alt="延安风貌">
-</div>
-
-
-<!-- 标题 -->
-<div class="header">
-    <h1>延安大生产运动 · 数字学习交互平台</h1>
-    <p>薪火耕耘 · 自力更生 · 艰苦奋斗 · 精神永续</p>
-</div>
+<!-- 顶部轮播 -->
+<section class="hero">
+    <div class="slider">
+        <img src="1.jpg" alt="延安历史图片1">
+        <img src="2.jpg" alt="延安历史图片2">
+        <img src="3.jpg" alt="延安历史图片3">
+    </div>
+    <div class="hero-content">
+        <div class="hero-inner">
+            <div class="hero-badge">红色文化 · 数字交互展示</div>
+            <h1>延安大生产运动<br>数字学习交互平台</h1>
+            <p>
+                以数字化方式再现延安大生产运动的历史背景、精神内核与时代价值，
+                让“自力更生、艰苦奋斗”的精神在今天继续发光。
+            </p>
+            <div class="hero-buttons">
+                <a href="#know" class="btn-main">进入知识展厅</a>
+                <a href="#film" class="btn-sub">观看微电影</a>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- 导航 -->
-<div class="nav">
-    <a href="#know">知识展厅</a>
-    <a href="#ai">智能问答</a>
-    <a href="#debate">辩论赛</a>
-    <a href="#film">微电影</a>
-    <a href="#team">团队介绍</a>
+<div class="nav-wrap">
+    <div class="nav">
+        <a href="#know">知识展厅</a>
+        <a href="#ai">智能问答</a>
+        <a href="#debate">辩论赛</a>
+        <a href="#film">微电影</a>
+        <a href="#team">团队介绍</a>
+    </div>
 </div>
 
 <div class="container">
 
-<!-- 知识展厅 -->
-<div id="know" class="card">
-    <h2>📚 大生产运动 · 知识展厅</h2>
-    <div style="margin-bottom:20px">
-        <img src="nanniwan.jpg" style="width:100%;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.1)">
-    </div>
+    <!-- 知识展厅 -->
+    <section id="know" class="card reveal">
+        <h2>📚 大生产运动 · 知识展厅</h2>
+        <p class="card-title-sub">从生存危机到精神定格，了解延安大生产运动的历史脉络与现实启示。</p>
 
-    <p style="font-size:16px;color:#a82020;font-weight:bold">一、历史背景 · 内外夹击的生存危机</p>
-    <p>1941年，抗日战争进入相持阶段，日军对根据地疯狂“扫荡”，国民党发动第二次反共高潮，对陕甘宁边区实行<strong>军事包围 + 经济封锁</strong>。</p>
-    <p>边区脱产人员达7.3万人，粮食缺口16万石，几乎到了“不战而亡”的绝境。</p>
-    <br>
+        <img src="yanan.jpg" alt="延安历史图片" class="content-image">
 
-    <p style="font-size:16px;color:#a82020;font-weight:bold">二、核心号召与总方针</p>
-    <p><strong>毛泽东号召：</strong>自己动手，丰衣足食</p>
-    <p><strong>经济工作总方针：</strong>发展经济，保障供给</p>
-    <br>
+        <p class="section-title">一、历史背景 · 内外夹击的生存危机</p>
+        <p>
+            1941年，抗日战争进入相持阶段，日军对根据地疯狂“扫荡”，国民党发动第二次反共高潮，
+            对陕甘宁边区实行<strong>军事包围 + 经济封锁</strong>。
+        </p>
+        <p>
+            边区脱产人员达7.3万人，粮食缺口16万石，几乎到了“不战而亡”的绝境。
+        </p>
 
+        <p class="section-title">二、核心号召与总方针</p>
+        <p><strong>毛泽东号召：</strong>自己动手，丰衣足食</p>
+        <p><strong>经济工作总方针：</strong>发展经济，保障供给</p>
 
-    <p style="font-size:16px;color:#a82020;font-weight:bold">三、发展五阶段（时间轴）</p>
-    <p>✅ 萌芽阶段（1938–1939）</p>
-    <p>✅ 危机爆发（1940底–1941春）</p>
-    <p>✅ 全面展开（1941–1942）</p>
-    <p>✅ 成效凸显（1943–1944）</p>
-    <p>✅ 精神定格（1945七大）</p>
-    <br>
+        <img src="nanniwan.jpg" alt="南泥湾图片" class="content-image">
 
-    <p style="font-size:16px;color:#a82020;font-weight:bold">四、典型典范：南泥湾大开发</p>
-    <p>三五九旅开进荒无人烟的南泥湾，“一把镢头一支枪，生产自给保卫党中央”。</p>
-    <p>短短数年，把“烂泥湾”变成了“陕北江南”。</p>
-    <br>
-
-    <p style="font-size:16px;color:#a82020;font-weight:bold">五、精神内核 · 永不过时</p>
-    <p>✅ 战略自主 ✅ 全员实干 ✅ 迎难而上 ✅ 集体共赢 ✅ 创新求变</p>
-</div>
-
-<!-- 智能问答 -->
-<div id="ai" class="card">
-    <h2>🤖 智能问答 · 红色小助手</h2>
-    <div id="chat" class="chat-box">
-        <div class="chat-welcome">
-            <p>AI：你好！我是延安精神小助手，你可以问我：</p>
-            <p>• 大生产运动的意义</p>
-            <p>• 什么是群众路线</p>
-            <p>• 自力更生与合作的关系</p>
+        <p class="section-title">三、发展五阶段（时间轴）</p>
+        <div class="timeline">
+            <div class="timeline-item">
+                <strong>1938–1939</strong>
+                萌芽阶段
+            </div>
+            <div class="timeline-item">
+                <strong>1940底–1941春</strong>
+                危机爆发
+            </div>
+            <div class="timeline-item">
+                <strong>1941–1942</strong>
+                全面展开
+            </div>
+            <div class="timeline-item">
+                <strong>1943–1944</strong>
+                成效凸显
+            </div>
+            <div class="timeline-item">
+                <strong>1945 七大</strong>
+                精神定格
+            </div>
         </div>
-    </div>
-    <div class="chat-input">
-        <input id="msg" placeholder="请输入你的问题...">
-        <button onclick="send()">发送</button>
-    </div>
+
+        <p class="section-title">四、典型典范：南泥湾大开发</p>
+        <p>
+            三五九旅开进荒无人烟的南泥湾，“一把镢头一支枪，生产自给保卫党中央”。
+            短短数年，把“烂泥湾”变成了“陕北江南”。
+        </p>
+
+        <div class="highlight-box">
+            <p class="section-title" style="margin-top:0;">五、精神内核 · 永不过时</p>
+            <p>✅ 战略自主　✅ 全员实干　✅ 迎难而上　✅ 集体共赢　✅ 创新求变</p>
+        </div>
+    </section>
+
+    <!-- 智能问答 -->
+    <section id="ai" class="card reveal">
+        <h2>🤖 智能问答 · 红色小助手</h2>
+        <p class="card-title-sub">输入问题，快速了解延安大生产运动的背景、意义与精神价值。</p>
+
+        <div id="chat" class="chat-box">
+            <div class="chat-welcome">
+                <p>AI：你好！我是延安精神小助手，你可以问我：</p>
+                <p>• 大生产运动的意义</p>
+                <p>• 什么是群众路线</p>
+                <p>• 自力更生与合作的关系</p>
+                <p>• 南泥湾为什么重要</p>
+            </div>
+        </div>
+
+        <div class="chat-input">
+            <input id="msg" placeholder="请输入你的问题..." />
+            <button onclick="send()">发送</button>
+        </div>
+    </section>
+
+    <!-- 辩论赛 -->
+    <section id="debate" class="card reveal">
+        <h2>🗣️ 主题辩论赛 · 完整实录</h2>
+        <p class="card-title-sub">
+            新时代破解核心技术“卡脖子”：正方主张优先自力更生，反方主张优先全球合作。
+        </p>
+
+        <div class="debate-content">
+            <div class="debate-item">
+                <p><span class="zheng">正方：</span>核心技术买不来、要不来、讨不来，必须把命脉握在自己手中！</p>
+            </div>
+            <div class="debate-item">
+                <p><span class="fan">反方：</span>全球合作高效聚智，互助共赢才能更快突破“卡脖子”！</p>
+            </div>
+            <div class="debate-item">
+                <p><span class="zheng">正方：</span>当年边区被封锁，外援断绝；今天科技被卡，更要自力更生！</p>
+            </div>
+            <div class="debate-item">
+                <p><span class="fan">反方：</span>合作不是依赖，以合作促自主，才是实事求是！</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 微电影 -->
+    <section id="film" class="card reveal">
+        <h2>🎬 原创微电影 · 星火的接续</h2>
+        <p class="card-title-sub">主题：延安的镢头 → 今天的键盘</p>
+        <p>
+            微电影以历史与现实相呼应的方式，展现延安精神在新时代青年中的延续与传承。
+        </p>
+        <a
+            href="https://www.bilibili.com/video/BV1U9DXB9EcR/?spm_id_from=333.1387.homepage.video_card.click&vd_source=5d4ecdffb272fdfded0352c757325b59"
+            target="_blank"
+            class="video-link"
+        >
+            点击观看微电影
+        </a>
+    </section>
+
+    <!-- 团队 -->
+    <section id="team" class="card reveal">
+        <h2>📌 团队介绍 · 成果信息</h2>
+        <div class="team-box">
+            <p><strong>课程主题：</strong>薪火耕耘——延安大生产运动的精神溯源与当代回响</p>
+            <p><strong>演讲人：</strong>张闰婕</p>
+            <p><strong>指导老师：</strong>谭红梅</p>
+            <p>
+                <strong>小组成员：</strong>
+                蒋雅鑫、张雅、曾欣欣、周佳美、王美云、吴越、李婉瑜、张闰婕、
+                张朵、张栖宁、王睿祥、吴思铜、杨婧、张博宇、吴琪
+            </p>
+        </div>
+    </section>
+
 </div>
 
-<!-- 辩论赛 -->
-<div id="debate" class="card">
-    <h2>🗣️ 主题辩论赛 · 完整实录</h2>
-    <p style="text-align:center;font-weight:bold;font-size:17px">
-        新时代破解核心技术“卡脖子”<br>
-        正方：优先自力更生 &nbsp;&nbsp; VS &nbsp;&nbsp; 反方：优先全球合作
-    </p>
-    <div class="debate-content">
-        <p><span class="zheng">正方：</span>核心技术买不来、要不来、讨不来，必须把命脉握在自己手中！</p>
-        <p><span class="fan">反方：</span>全球合作高效聚智，互助共赢才能更快突破“卡脖子”！</p>
-        <p><span class="zheng">正方：</span>当年边区被封锁，外援断绝；今天科技被卡，更要自力更生！</p>
-        <p><span class="fan">反方：</span>合作不是依赖，以合作促自主，才是实事求是！</p>
-    </div>
-</div>
-
-<!-- 微电影 -->
-<div id="film" class="card">
-    <h2>🎬 原创微电影 · 星火的接续</h2>
-    <p><strong>主题：</strong>延安的镢头 → 今天的键盘</p>
-    <a href="https://www.bilibili.com/video/BV1U9DXB9EcR/?spm_id_from=333.1387.homepage.video_card.click&vd_source=5d4ecdffb272fdfded0352c757325b59" target="_blank"
-       style="display:inline-block;margin-top:16px;background:#a82020;color:#fff;
-       padding:12px 20px;border-radius:10px;text-decoration:none;">
-       点击观看微电影
-    </a>
-</div>
-
-
-<!-- 团队 -->
-<div id="team" class="card">
-    <h2>📌 团队介绍 · 成果信息</h2>
-    <p><strong>课程主题：</strong>薪火耕耘——延安大生产运动的精神溯源与当代回响</p>
-    <p><strong>演讲人：</strong>张闰婕</p>
-    <p><strong>指导老师：</strong>谭红梅</p>
-    <p><strong>小组成员：</strong>蒋雅鑫、张雅、曾欣欣、周佳美、王美云、吴越、李婉瑜、张闰婕、张朵、张栖宁、王睿祥、吴思铜、杨婧、张博宇、吴琪</p>
-</div>
-
-</div>
-
-<div class="footer">
-    毛概课程实践成果 · 延安大生产运动数字交互平台 © 2026
-</div>
+<footer class="footer">
+    <p>毛概课程实践成果 · 延安大生产运动数字交互平台 © 2026</p>
+</footer>
 
 <script>
 function send() {
-    let chat = document.getElementById("chat");
-    let msg = document.getElementById("msg").value.trim();
+    const chat = document.getElementById("chat");
+    const input = document.getElementById("msg");
+    let msg = input.value.trim();
     if (!msg) return;
 
     chat.innerHTML += `<div class="bubble-user">${msg}</div>`;
-    msg = msg.toLowerCase();
+
+    const text = msg.toLowerCase();
     let ans = "";
 
-    if (msg.includes("意义") || msg.includes("作用")) {
-        ans = "大生产运动的意义：打破经济封锁、实现自给自足、密切党群关系、铸就自力更生精神！";
-    } else if (msg.includes("背景") || msg.includes("为什么")) {
-        ans = "背景：日军扫荡+国民党封锁，边区粮食缺口16万石，陷入生存危机，必须自己动手！";
-    } else if (msg.includes("口号") || msg.includes("自己动手")) {
-        ans = "核心口号：自己动手，丰衣足食！总方针：发展经济，保障供给！";
-    } else if (msg.includes("群众路线") || msg.includes("群众")) {
-        ans = "群众路线体现：毛主席亲自开荒、周恩来纺线、军民同劳、给人民实实在在的利益！";
-    } else if (msg.includes("南泥湾") || msg.includes("三五九旅")) {
-        ans = "南泥湾典范：三五九旅把烂泥湾变成陕北江南，实现粮食与经费全部自给！";
-    } else if (msg.includes("自力更生") || msg.includes("精神")) {
-        ans = "自力更生、艰苦奋斗是延安精神的核心，是我们面对困难最硬的底气！";
-    } else if (msg.includes("合作") || msg.includes("开放")) {
-        ans = "自力更生是底线，合作是方法；底线优先，方法互补，不是二选一！";
-    } else if (msg.includes("卡脖子") || msg.includes("科技")) {
-        ans = "新时代破解卡脖子，要传承自力更生，坚持自主创新，把关键技术握在自己手里！";
-    } else if (msg.includes("你好") || msg.includes("在吗")) {
-        ans = "你好！我是延安精神小助手，随时为你解答～";
-    } else if (msg.includes("谢谢")) {
-        ans = "不客气！传承红色精神，我们一起加油！";
+    if (text.includes("意义") || text.includes("作用")) {
+        ans = "大生产运动的意义在于：打破经济封锁、实现自给自足、密切党群关系，并铸就了自力更生、艰苦奋斗的精神品格。";
+    } else if (text.includes("背景") || text.includes("为什么")) {
+        ans = "背景是日军扫荡与国民党经济封锁叠加，边区陷入严重生存危机，因此必须通过发展生产来自救。";
+    } else if (text.includes("口号") || text.includes("自己动手")) {
+        ans = "核心口号是：自己动手，丰衣足食。总方针是：发展经济，保障供给。";
+    } else if (text.includes("群众路线") || text.includes("群众")) {
+        ans = "群众路线体现在干部带头劳动、军民同劳同作，把组织动员和人民利益紧密结合起来。";
+    } else if (text.includes("南泥湾") || text.includes("三五九旅")) {
+        ans = "南泥湾是大生产运动的典型代表，三五九旅通过开荒生产，把荒地变成良田，体现了自力更生与艰苦奋斗。";
+    } else if (text.includes("自力更生") || text.includes("精神")) {
+        ans = "自力更生、艰苦奋斗是延安精神的重要内核，也是面对困难时最坚韧的底气。";
+    } else if (text.includes("合作") || text.includes("开放")) {
+        ans = "自力更生是立足点，合作开放是发展路径。二者不是对立关系，而是可以相互促进。";
+    } else if (text.includes("卡脖子") || text.includes("科技")) {
+        ans = "面对核心技术“卡脖子”，要坚持自主创新，把关键核心技术牢牢掌握在自己手中。";
+    } else if (text.includes("你好") || text.includes("在吗")) {
+        ans = "你好！我是延安精神小助手，很高兴为你服务。";
+    } else if (text.includes("谢谢")) {
+        ans = "不客气！愿我们一起传承延安精神。";
     } else {
-        ans = "我还在学习哦～你可以问我：意义、背景、口号、南泥湾、群众路线、自力更生、卡脖子等！";
+        ans = "我还在学习中，你可以问我：意义、背景、口号、南泥湾、群众路线、自力更生、科技“卡脖子”等问题。";
     }
 
     chat.innerHTML += `<div class="bubble-ai">${ans}</div>`;
-    document.getElementById("msg").value = "";
+    input.value = "";
     chat.scrollTop = chat.scrollHeight;
 }
+
+document.getElementById("msg").addEventListener("keydown", function(e){
+    if (e.key === "Enter") {
+        send();
+    }
+});
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+        }
+    });
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 </script>
 
 </body>
