@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>延安大生产运动 · 数字学习交互平台</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Microsoft YaHei","PingFang SC",sans-serif}
+body{background:#f8f9fa;color:#222;line-height:1.7}
+
+/* 🔥 顶部轮播图（自动循环播放） */
+.slider{
+    width:100%;
+    height:420px;
+    position:relative;
+    overflow:hidden;
+}
+.slider img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    position:absolute;
+    opacity:0;
+    animation:slide 15s infinite;
+}
+@keyframes slide{
+    0%{opacity:0}
+    20%{opacity:1}
+    40%{opacity:1}
+    60%{opacity:0}
+}
+.slider img:nth-child(1){animation-delay:0s}
+.slider img:nth-child(2){animation-delay:5s}
+.slider img:nth-child(3){animation-delay:10s}
+
+/* 顶部标题 */
+.header{
+    background:linear-gradient(135deg,#a82020,#8b1a1a);
+    color:white;
+    padding:30px 20px;
+    text-align:center;
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+.header h1{font-size:28px}
+.header p{font-size:16px;opacity:.9}
+
+/* 导航 */
+.nav{
+    background:#7c1616;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+    position:sticky;
+    top:0;
+    z-index:999;
+}
+.nav a{
+    color:white;
+    padding:16px 22px;
+    text-decoration:none;
+    transition:all 0.3s;
+    font-weight:500;
+}
+.nav a:hover{
+    background:#ffffff22;
+    transform:translateY(-2px)
+}
+
+.container{max-width:1000px;margin:35px auto;padding:0 20px}
+
+/* 卡片 */
+.card{
+    background:white;
+    border-radius:16px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.06);
+    padding:32px;
+    margin-bottom:28px;
+    transition:0.3s;
+    border:1px solid #eee;
+}
+.card:hover{box-shadow:0 10px 30px rgba(0,0,0,0.09)}
+.card h2{
+    color:#a82020;
+    font-size:23px;
+    margin-bottom:22px;
+    border-left:6px solid #a82020;
+    padding-left:14px;
+}
+
+/* 聊天气泡 */
+.chat-box{
+    height:320px;
+    background:#f7f8fa;
+    border:1px solid #eee;
+    border-radius:14px;
+    padding:20px;
+    overflow-y:auto;
+    margin-bottom:12px;
+}
+.bubble-user{
+    background:#fff;
+    padding:10px 14px;
+    border-radius:18px 18px 4px 18px;
+    margin:8px 0 8px auto;
+    display:table;
+    max-width:75%;
+    box-shadow:0 2px 6px rgba(0,0,0,0.05);
+}
+.bubble-ai{
+    background:#a82020;
+    color:#fff;
+    padding:10px 14px;
+    border-radius:18px 18px 18px 4px;
+    margin:8px auto 8px 0;
+    display:table;
+    max-width:75%;
+    box-shadow:0 2px 6px rgba(168,32,32,0.2);
+}
+.chat-welcome{color:#666}
+
+.chat-input{display:flex;gap:10px}
+.chat-input input{flex:1;padding:12px;border:1px solid #ddd;border-radius:10px}
+.chat-input button{background:#a82020;color:white;border:none;padding:12px 20px;border-radius:10px}
+.chat-input button:hover{background:#8b1a1a}
+
+/* 辩论赛 */
+.debate-content{border-left:4px solid #a82020;padding-left:18px;margin:14px 0}
+.zheng{color:#c93737;font-weight:bold}
+.fan{color:#2F6BBA;font-weight:bold}
+
+/* 视频 */
+video{width:100%;border-radius:12px;margin-top:20px;box-shadow:0 4px 12px rgba(0,0,0,0.1)}
+
+.footer{
+    background:#f2f2f2;
+    text-align:center;
+    padding:35px 20px;
+    color:#666;
+    margin-top:40px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔥 顶部 3 张图自动轮播（联网稳定图） -->
+<div class="slider">
+    <img src="https://img1.baidu.com/it/u=3890123456,7890123456&fm=253&fmt=auto&app=138&f=JPEG" alt="延安历史">
+    <img src="https://img0.baidu.com/it/u=1234567890,0987654321&fm=253&fmt=auto&app=120&f=JPEG" alt="南泥湾">
+    <img src="https://img2.baidu.com/it/u=4567891234,9876543210&fm=253&fmt=auto&app=138&f=JPEG" alt="大生产">
+</div>
+
+<!-- 标题 -->
+<div class="header">
+    <h1>延安大生产运动 · 数字学习交互平台</h1>
+    <p>薪火耕耘 · 自力更生 · 艰苦奋斗 · 精神永续</p>
+</div>
+
+<!-- 导航 -->
+<div class="nav">
+    <a href="#know">知识展厅</a>
+    <a href="#ai">智能问答</a>
+    <a href="#debate">辩论赛</a>
+    <a href="#film">微电影</a>
+    <a href="#team">团队介绍</a>
+</div>
+
+<div class="container">
+
+<!-- 知识展厅 -->
+<div id="know" class="card">
+    <h2>📚 大生产运动 · 知识展厅</h2>
+    <div style="margin-bottom:20px">
+        <img src="yanan.jpg" style="width:100%;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.1)">
+    </div>
+
+    <p style="font-size:16px;color:#a82020;font-weight:bold">一、历史背景 · 内外夹击的生存危机</p>
+    <p>1941年，抗日战争进入相持阶段，日军对根据地疯狂“扫荡”，国民党发动第二次反共高潮，对陕甘宁边区实行<strong>军事包围 + 经济封锁</strong>。</p>
+    <p>边区脱产人员达7.3万人，粮食缺口16万石，几乎到了“不战而亡”的绝境。</p>
+    <br>
+
+    <p style="font-size:16px;color:#a82020;font-weight:bold">二、核心号召与总方针</p>
+    <p><strong>毛泽东号召：</strong>自己动手，丰衣足食</p>
+    <p><strong>经济工作总方针：</strong>发展经济，保障供给</p>
+    <br>
+
+    <div style="margin-bottom:20px">
+        <img src="nanniwan.jpg" style="width:100%;border-radius:12px;box-shadow:0 4px 10px rgba(0,0,0,0.1)">
+    </div>
+
+    <p style="font-size:16px;color:#a82020;font-weight:bold">三、发展五阶段（时间轴）</p>
+    <p>✅ 萌芽阶段（1938–1939）</p>
+    <p>✅ 危机爆发（1940底–1941春）</p>
+    <p>✅ 全面展开（1941–1942）</p>
+    <p>✅ 成效凸显（1943–1944）</p>
+    <p>✅ 精神定格（1945七大）</p>
+    <br>
+
+    <p style="font-size:16px;color:#a82020;font-weight:bold">四、典型典范：南泥湾大开发</p>
+    <p>三五九旅开进荒无人烟的南泥湾，“一把镢头一支枪，生产自给保卫党中央”。</p>
+    <p>短短数年，把“烂泥湾”变成了“陕北江南”。</p>
+    <br>
+
+    <p style="font-size:16px;color:#a82020;font-weight:bold">五、精神内核 · 永不过时</p>
+    <p>✅ 战略自主 ✅ 全员实干 ✅ 迎难而上 ✅ 集体共赢 ✅ 创新求变</p>
+</div>
+
+<!-- 智能问答 -->
+<div id="ai" class="card">
+    <h2>🤖 智能问答 · 红色小助手</h2>
+    <div id="chat" class="chat-box">
+        <div class="chat-welcome">
+            <p>AI：你好！我是延安精神小助手，你可以问我：</p>
+            <p>• 大生产运动的意义</p>
+            <p>• 什么是群众路线</p>
+            <p>• 自力更生与合作的关系</p>
+        </div>
+    </div>
+    <div class="chat-input">
+        <input id="msg" placeholder="请输入你的问题...">
+        <button onclick="send()">发送</button>
+    </div>
+</div>
+
+<!-- 辩论赛 -->
+<div id="debate" class="card">
+    <h2>🗣️ 主题辩论赛 · 完整实录</h2>
+    <p style="text-align:center;font-weight:bold;font-size:17px">
+        新时代破解核心技术“卡脖子”<br>
+        正方：优先自力更生 &nbsp;&nbsp; VS &nbsp;&nbsp; 反方：优先全球合作
+    </p>
+    <div class="debate-content">
+        <p><span class="zheng">正方：</span>核心技术买不来、要不来、讨不来，必须把命脉握在自己手中！</p>
+        <p><span class="fan">反方：</span>全球合作高效聚智，互助共赢才能更快突破“卡脖子”！</p>
+        <p><span class="zheng">正方：</span>当年边区被封锁，外援断绝；今天科技被卡，更要自力更生！</p>
+        <p><span class="fan">反方：</span>合作不是依赖，以合作促自主，才是实事求是！</p>
+    </div>
+</div>
+
+<!-- 微电影 -->
+<div id="film" class="card">
+    <h2>🎬 原创微电影 · 星火的接续</h2>
+    <p><strong>主题：</strong>延安的镢头 → 今天的键盘</p>
+    <video controls>
+        <source src="movie.mp4" type="video/mp4">
+    </video>
+</div>
+
+<!-- 团队 -->
+<div id="team" class="card">
+    <h2>📌 团队介绍 · 成果信息</h2>
+    <p><strong>课程主题：</strong>薪火耕耘——延安大生产运动的精神溯源与当代回响</p>
+    <p><strong>演讲人：</strong>张闰婕</p>
+    <p><strong>指导老师：</strong>谭红梅</p>
+    <p><strong>小组成员：</strong>蒋雅鑫、张雅、曾欣欣、周佳美、王美云、吴越、李婉瑜、张闰婕、张朵、张栖宁、王睿祥、吴思铜、杨婧、张博宇、吴琪</p>
+</div>
+
+</div>
+
+<div class="footer">
+    毛概课程实践成果 · 延安大生产运动数字交互平台 © 2026
+</div>
+
+<script>
+function send() {
+    let chat = document.getElementById("chat");
+    let msg = document.getElementById("msg").value.trim();
+    if (!msg) return;
+
+    chat.innerHTML += `<div class="bubble-user">${msg}</div>`;
+    msg = msg.toLowerCase();
+    let ans = "";
+
+    if (msg.includes("意义") || msg.includes("作用")) {
+        ans = "大生产运动的意义：打破经济封锁、实现自给自足、密切党群关系、铸就自力更生精神！";
+    } else if (msg.includes("背景") || msg.includes("为什么")) {
+        ans = "背景：日军扫荡+国民党封锁，边区粮食缺口16万石，陷入生存危机，必须自己动手！";
+    } else if (msg.includes("口号") || msg.includes("自己动手")) {
+        ans = "核心口号：自己动手，丰衣足食！总方针：发展经济，保障供给！";
+    } else if (msg.includes("群众路线") || msg.includes("群众")) {
+        ans = "群众路线体现：毛主席亲自开荒、周恩来纺线、军民同劳、给人民实实在在的利益！";
+    } else if (msg.includes("南泥湾") || msg.includes("三五九旅")) {
+        ans = "南泥湾典范：三五九旅把烂泥湾变成陕北江南，实现粮食与经费全部自给！";
+    } else if (msg.includes("自力更生") || msg.includes("精神")) {
+        ans = "自力更生、艰苦奋斗是延安精神的核心，是我们面对困难最硬的底气！";
+    } else if (msg.includes("合作") || msg.includes("开放")) {
+        ans = "自力更生是底线，合作是方法；底线优先，方法互补，不是二选一！";
+    } else if (msg.includes("卡脖子") || msg.includes("科技")) {
+        ans = "新时代破解卡脖子，要传承自力更生，坚持自主创新，把关键技术握在自己手里！";
+    } else if (msg.includes("你好") || msg.includes("在吗")) {
+        ans = "你好！我是延安精神小助手，随时为你解答～";
+    } else if (msg.includes("谢谢")) {
+        ans = "不客气！传承红色精神，我们一起加油！";
+    } else {
+        ans = "我还在学习哦～你可以问我：意义、背景、口号、南泥湾、群众路线、自力更生、卡脖子等！";
+    }
+
+    chat.innerHTML += `<div class="bubble-ai">${ans}</div>`;
+    document.getElementById("msg").value = "";
+    chat.scrollTop = chat.scrollHeight;
+}
+</script>
+
+</body>
+</html>
