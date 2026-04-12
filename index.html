@@ -278,14 +278,6 @@ body{
     margin:16px 0 8px;
 }
 
-.highlight-box{
-    margin-top:18px;
-    background:linear-gradient(135deg, rgba(168,32,32,0.06), rgba(168,32,32,0.02));
-    border:1px solid rgba(168,32,32,0.12);
-    border-radius:16px;
-    padding:18px 20px;
-}
-
 .timeline{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
@@ -313,9 +305,33 @@ body{
     margin-bottom:4px;
 }
 
+/* 只框五个精神内核，不框标题 */
+.spirit-grid{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+    gap:12px;
+    margin-top:14px;
+}
+
+.spirit-item{
+    background:linear-gradient(135deg, rgba(168,32,32,0.06), rgba(168,32,32,0.02));
+    border:1px solid rgba(168,32,32,0.12);
+    border-radius:14px;
+    padding:14px 10px;
+    text-align:center;
+    box-shadow:0 6px 14px rgba(0,0,0,0.04);
+    font-weight:600;
+    transition:all .3s ease;
+}
+
+.spirit-item:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 18px rgba(0,0,0,0.08);
+}
+
 /* 聊天 */
 .chat-box{
-    height:340px;
+    height:420px;
     background:linear-gradient(180deg, #fafbfc, #f3f5f8);
     border:1px solid #ececec;
     border-radius:18px;
@@ -335,11 +351,13 @@ body{
 
 .bubble-user,
 .bubble-ai{
-    max-width:76%;
-    padding:12px 15px;
-    margin:10px 0;
+    max-width:78%;
+    padding:14px 18px;
+    margin:12px 0;
     animation:bubbleIn .35s ease;
     word-break:break-word;
+    line-height:1.9;
+    font-size:15px;
 }
 
 .bubble-user{
@@ -485,6 +503,9 @@ body{
     .hero p{
         font-size:16px;
     }
+    .spirit-grid{
+        grid-template-columns:repeat(2, 1fr);
+    }
 }
 
 @media (max-width:768px){
@@ -506,6 +527,13 @@ body{
     }
     .timeline{
         grid-template-columns:1fr;
+    }
+    .spirit-grid{
+        grid-template-columns:1fr;
+    }
+    .bubble-user,
+    .bubble-ai{
+        max-width:92%;
     }
 }
 </style>
@@ -554,8 +582,6 @@ body{
         <h2>📚 大生产运动 · 知识展厅</h2>
         <p class="card-title-sub">从生存危机到精神定格，了解延安大生产运动的历史脉络与现实启示。</p>
 
-        <img src="yanan.jpg" alt="延安历史图片" class="content-image">
-
         <p class="section-title">一、历史背景 · 内外夹击的生存危机</p>
         <p>
             1941年，抗日战争进入相持阶段，日军对根据地疯狂“扫荡”，国民党发动第二次反共高潮，
@@ -601,9 +627,13 @@ body{
             短短数年，把“烂泥湾”变成了“陕北江南”。
         </p>
 
-        <div class="highlight-box">
-            <p class="section-title" style="margin-top:0;">五、精神内核 · 永不过时</p>
-            <p>✅ 战略自主　✅ 全员实干　✅ 迎难而上　✅ 集体共赢　✅ 创新求变</p>
+        <p class="section-title">五、精神内核 · 永不过时</p>
+        <div class="spirit-grid">
+            <div class="spirit-item">✅ 战略自主</div>
+            <div class="spirit-item">✅ 全员实干</div>
+            <div class="spirit-item">✅ 迎难而上</div>
+            <div class="spirit-item">✅ 集体共赢</div>
+            <div class="spirit-item">✅ 创新求变</div>
         </div>
     </section>
 
@@ -672,7 +702,6 @@ body{
         <h2>📌 团队介绍 · 成果信息</h2>
         <div class="team-box">
             <p><strong>课程主题：</strong>薪火耕耘——延安大生产运动的精神溯源与当代回响</p>
-            <p><strong>演讲人：</strong>张闰婕</p>
             <p><strong>指导老师：</strong>谭红梅</p>
             <p>
                 <strong>小组成员：</strong>
@@ -701,27 +730,27 @@ function send() {
     let ans = "";
 
     if (text.includes("意义") || text.includes("作用")) {
-        ans = "大生产运动的意义在于：打破经济封锁、实现自给自足、密切党群关系，并铸就了自力更生、艰苦奋斗的精神品格。";
+        ans = "大生产运动的意义非常重大。第一，它帮助陕甘宁边区在严重封锁中渡过了生存危机，保障了根据地的基本供给。第二，它增强了军民团结和党群关系，干部、战士和群众一起劳动，真正体现了同甘共苦。第三，它不仅解决了现实困难，还形成了自力更生、艰苦奋斗的精神财富。这种精神直到今天仍然具有重要启示，特别是在面对困难和挑战时。";
     } else if (text.includes("背景") || text.includes("为什么")) {
-        ans = "背景是日军扫荡与国民党经济封锁叠加，边区陷入严重生存危机，因此必须通过发展生产来自救。";
+        ans = "大生产运动的背景，是抗日战争进入相持阶段后，边区面临极其严峻的生存压力。一方面，日军不断“扫荡”根据地；另一方面，国民党对陕甘宁边区实行经济封锁，导致物资、粮食和经费都十分紧张。在这种情况下，如果不能解决吃饭、穿衣和供给问题，根据地就很难继续坚持斗争。因此，中国共产党提出发展生产、保障供给，依靠自己的力量渡过难关。";
     } else if (text.includes("口号") || text.includes("自己动手")) {
-        ans = "核心口号是：自己动手，丰衣足食。总方针是：发展经济，保障供给。";
+        ans = "大生产运动最有代表性的口号就是“自己动手，丰衣足食”。这句话的核心意思是：不能一味依赖外部援助，而要依靠自己的劳动创造条件，解决实际困难。与此同时，当时经济工作的总方针是“发展经济，保障供给”。这既是现实需要，也是延安精神中自力更生思想的集中体现。";
     } else if (text.includes("群众路线") || text.includes("群众")) {
-        ans = "群众路线体现在干部带头劳动、军民同劳同作，把组织动员和人民利益紧密结合起来。";
+        ans = "群众路线在大生产运动中的体现非常鲜明。首先，干部带头参加劳动，不搞特殊化，真正与群众一起开荒、纺线、种地。其次，军队和地方群众共同生产，形成了军民团结、上下同心的局面。再次，大生产运动不是脱离群众的命令式活动，而是通过组织动员把人民利益与革命事业结合起来。可以说，群众路线在这里表现为一切依靠群众、发动群众、服务群众。";
     } else if (text.includes("南泥湾") || text.includes("三五九旅")) {
-        ans = "南泥湾是大生产运动的典型代表，三五九旅通过开荒生产，把荒地变成良田，体现了自力更生与艰苦奋斗。";
+        ans = "南泥湾是大生产运动中最典型、最有象征意义的案例。三五九旅进驻南泥湾时，当地条件十分艰苦，荒草丛生，生产基础很差。但经过开荒种地、发展农业和副业生产，南泥湾逐渐由荒地变成良田，被称为“陕北江南”。南泥湾的成功说明，只要坚定信心、艰苦奋斗、依靠集体力量，就能把困难局面转变为有利局面，因此它成为延安精神的重要象征。";
     } else if (text.includes("自力更生") || text.includes("精神")) {
-        ans = "自力更生、艰苦奋斗是延安精神的重要内核，也是面对困难时最坚韧的底气。";
+        ans = "自力更生、艰苦奋斗是延安精神的重要内核。所谓自力更生，就是面对困难不等、不靠、不要，而是依靠自己的力量去创造条件、解决问题。所谓艰苦奋斗，就是在艰难环境中保持信念、坚持实干、不怕吃苦。大生产运动之所以能够成功，正是因为边区军民把这种精神转化成了实际行动。今天，这种精神仍然能激励我们在学习、工作和科技创新中迎难而上。";
     } else if (text.includes("合作") || text.includes("开放")) {
-        ans = "自力更生是立足点，合作开放是发展路径。二者不是对立关系，而是可以相互促进。";
+        ans = "自力更生和合作开放并不是矛盾关系。自力更生强调的是立足自身，把发展的主动权掌握在自己手中；合作开放强调的是善于借鉴外部资源、吸收先进经验。在大生产运动中，强调自力更生，是因为当时外部条件极其困难，必须先站稳脚跟。放到今天来看，我们既要保持自主能力，也要善于合作交流，这样才能实现更高质量的发展。";
     } else if (text.includes("卡脖子") || text.includes("科技")) {
-        ans = "面对核心技术“卡脖子”，要坚持自主创新，把关键核心技术牢牢掌握在自己手中。";
+        ans = "面对核心技术“卡脖子”问题，延安大生产运动给我们的启示非常深刻。历史上，边区是在外部封锁下通过自力更生解决生存问题；今天，我国在一些关键技术领域也面临外部限制，因此更需要坚持自主创新，把关键核心技术掌握在自己手里。同时，这并不排斥国际合作，而是要在增强自身实力的基础上开展更高水平的开放合作。";
     } else if (text.includes("你好") || text.includes("在吗")) {
-        ans = "你好！我是延安精神小助手，很高兴为你服务。";
+        ans = "你好！我是延安精神小助手，很高兴为你服务。你可以向我提问大生产运动的背景、意义、南泥湾、自力更生、群众路线，以及它对今天的启示等内容，我会尽量为你详细解答。";
     } else if (text.includes("谢谢")) {
-        ans = "不客气！愿我们一起传承延安精神。";
+        ans = "不客气！学习延安大生产运动，不只是了解一段历史，更重要的是体会其中蕴含的自力更生、艰苦奋斗和团结实干精神。希望这些内容能对你的课程展示和理解都有帮助。";
     } else {
-        ans = "我还在学习中，你可以问我：意义、背景、口号、南泥湾、群众路线、自力更生、科技“卡脖子”等问题。";
+        ans = "这个问题也很有价值。结合延安大生产运动来看，我们可以从历史背景、实践过程、典型案例和精神启示几个方面来理解。你也可以换一种更具体的问法，比如“南泥湾为什么重要”“大生产运动有什么现实意义”“群众路线如何体现”，这样我可以回答得更详细。";
     }
 
     chat.innerHTML += `<div class="bubble-ai">${ans}</div>`;
