@@ -420,8 +420,21 @@ body{
 }
 
 /* 辩论赛 */
+.debate-images {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+.debate-img {
+    flex: 1;
+    border-radius: 14px;
+    height: 180px;
+    object-fit: cover;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.06);
+}
+
 .debate-content{
-    border-left:4px solid var(--red);
+    border-left:4px solid #a82020;
     padding-left:18px;
     margin:16px 0 6px;
 }
@@ -658,28 +671,28 @@ body{
         </div>
     </section>
 
-    <!-- 辩论赛 -->
-    <section id="debate" class="card reveal">
-        <h2>🗣️ 主题辩论赛 · 完整实录</h2>
-        <p class="card-title-sub">
-            新时代破解核心技术“卡脖子”：正方主张优先自力更生，反方主张优先全球合作。
-        </p>
+   <!-- 辩论赛（带现场图片 + 高颜值） -->
+<div id="debate" class="card">
+    <h2>🗣️ 主题辩论赛 · 完整实录</h2>
 
-        <div class="debate-content">
-            <div class="debate-item">
-                <p><span class="zheng">正方：</span>核心技术买不来、要不来、讨不来，必须把命脉握在自己手中！</p>
-            </div>
-            <div class="debate-item">
-                <p><span class="fan">反方：</span>全球合作高效聚智，互助共赢才能更快突破“卡脖子”！</p>
-            </div>
-            <div class="debate-item">
-                <p><span class="zheng">正方：</span>当年边区被封锁，外援断绝；今天科技被卡，更要自力更生！</p>
-            </div>
-            <div class="debate-item">
-                <p><span class="fan">反方：</span>合作不是依赖，以合作促自主，才是实事求是！</p>
-            </div>
-        </div>
-    </section>
+    <!-- 辩论赛现场图片（2张并排） -->
+    <div class="debate-images">
+        <img class="debate-img" src="bianlunsai1" alt="辩论赛现场1">
+        <img class="debate-img" src="bianlunsai2" alt="辩论赛现场2">
+    </div>
+
+    <p style="text-align:center;font-weight:bold;font-size:17px;margin-bottom:16px">
+        新时代破解核心技术“卡脖子”<br>
+        正方：优先自力更生 &nbsp;&nbsp; VS &nbsp;&nbsp; 反方：优先全球合作
+    </p>
+
+    <div class="debate-content">
+        <div class="debate-item"><span class="zheng">正方：</span>核心技术买不来、要不来、讨不来，必须把命脉握在自己手中！</div>
+        <div class="debate-item"><span class="fan">反方：</span>全球合作高效聚智，互助共赢才能更快突破“卡脖子”！</div>
+        <div class="debate-item"><span class="zheng">正方：</span>当年边区被封锁，外援断绝；今天科技被卡，更要自力更生！</div>
+        <div class="debate-item"><span class="fan">反方：</span>合作不是依赖，以合作促自主，才是实事求是！</div>
+    </div>
+</div>
 
     <!-- 微电影 -->
     <section id="film" class="card reveal">
