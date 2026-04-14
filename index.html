@@ -257,13 +257,16 @@ body{
 
 /* 图片 */
 .content-image{
-    width:100%;
-    border-radius:16px;
+    width:60%;              /* 控制大小，50%~70%都可以自己调 */
+    max-width:500px;        /* 防止太大 */
+    height:auto;            /* 保持比例不变 */
     display:block;
-    margin:18px 0 22px;
+    margin:18px auto 22px;  /* 居中显示 */
+    border-radius:16px;
     box-shadow:0 10px 24px rgba(0,0,0,0.12);
     transition:transform .4s ease, box-shadow .4s ease;
 }
+
 
 .content-image:hover{
     transform:scale(1.015);
